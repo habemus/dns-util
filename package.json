@@ -1,0 +1,22 @@
+{
+  "name": "h-dns",
+  "version": "0.0.0",
+  "description": "",
+  "main": "lib/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bluebird": "^3.4.5",
+    "url-pattern": "^1.0.1"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-istanbul": "^1.1.1",
+    "gulp-mocha": "^3.0.1",
+    "mockery": "^1.7.0",
+    "should": "^11.1.0"
+  }
+}
