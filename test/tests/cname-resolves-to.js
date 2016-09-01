@@ -57,4 +57,12 @@ describe('cnameResolvesTo', function () {
         resolvesTo.should.equal(false);
       });
   });
+
+  it('should require targetAddress to be passed', function () {
+    const hDns = require('../../lib');
+
+    assert.throws(function () {
+      hDns.cnameResolvesTo('domain.com', undefined);
+    });
+  });
 });

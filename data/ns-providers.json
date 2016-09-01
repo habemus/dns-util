@@ -1,12 +1,8 @@
 [
   {
-    "address": "ns10.domaincontrol.com",
-    "provider": {
-      "name": "Godaddy"
-    }
-  },
-  {
-    "address": "ns10.domaincontrol.com",
+    "addresses": [
+      "*.domaincontrol.com"
+    ],
     "provider": {
       "name": "Godaddy"
     }
