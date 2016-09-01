@@ -16,7 +16,7 @@ describe('searchNsProviderData', function () {
       resolveNs: function (hostname, cb) {
         cb(null, [
           'ns1.test.habemus.xyz',
-          'ns2.test.habemus.xyz',
+          'ns2.test.HABEMUS.xyz',
           'ns3.test.habemus.xyz',
         ]);
       },
