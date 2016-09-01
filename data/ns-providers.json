@@ -3,8 +3,74 @@
     "addresses": [
       "*.domaincontrol.com"
     ],
-    "provider": {
-      "name": "Godaddy"
-    }
+    "name": "GoDaddy",
+    "_id": "godaddy"
+  },
+  {
+    "addresses": [
+      "*.101DOMAIN.COM"
+    ],
+    "name": "101 Domain",
+    "_id": "101domain"
+  },
+  {
+    "addresses": [
+      "*.locaweb.com.br"
+    ],
+    "name": "Locaweb",
+    "_id": "locaweb"
+  },
+  {
+    "addresses": [
+      "*.dominios.uol.com.br"
+    ],
+    "name": "UOL Host",
+    "_id": "uolhost"
+  },
+  {
+    "addresses": [
+      "*.sec.dns.br"
+    ],
+    "name": "registro.br",
+    "_id": "registrobr"
+  },
+  {
+    "addresses": [
+      "*-1and1.*(.*)"
+    ],
+    "name": "1&1",
+    "_id": "1and1"
+  },
+  {
+    "addresses": [
+      "dns1.registrar-servers.com",
+      "dns2.registrar-servers.com"
+    ],
+    "name": "Namecheap",
+    "_id": "namecheap"
+  },
+  {
+    "addresses": [
+      "a.dns.gandi.net",
+      "b.dns.gandi.net",
+      "c.dns.gandi.net",
+      "ns6.gandi.net"
+    ],
+    "name": "Gandi",
+    "_id": "gandi"
+  },
+  {
+    "addresses": [
+      "*.hostgator.com"
+    ],
+    "name": "HostGator",
+    "_id": "hostgator"
+  },
+  {
+    "addresses": [
+      "*.awsdns-*.*(.*)"
+    ],
+    "name": "AWS Route 53",
+    "_id": "awsroute53"
   }
 ]
