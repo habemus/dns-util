@@ -72,5 +72,71 @@
     ],
     "name": "AWS Route 53",
     "_id": "awsroute53"
+  },
+  {
+    "addresses": [
+      "*.domain.com"
+    ],
+    "name": "Domain.com",
+    "_id": "domaincom"
+  },
+  {
+    "addresses": [
+      "*.dnsmadeeasy.com"
+    ],
+    "name": "DNS Made Easy",
+    "_id": "dnsmadeeasy"
+  },
+  {
+    "addresses": [
+      "ns1.bluehost.com",
+      "ns2.bluehost.com",
+      "*.bluehost.com"
+    ],
+    "name": "Bluehost",
+    "_id": "bluehost"
+  },
+  {
+    "addresses": [
+      "ns*.*.dynect.net"
+    ],
+    "name": "Dyn",
+    "_id": "dyn",
+    "website": "http://dyn.com/"
+  },
+  {
+    "addresses": [
+      "*.ns.cloudflare.com"
+    ],
+    "name": "Cloudflare",
+    "_id": "cloudflare"
+  },
+  {
+    "addresses": [
+      "ns*.wordpress.com"
+    ],
+    "name": "Wordpress.com",
+    "_id": "wordpresscom"
+  },
+  {
+    "addresses": [
+      "ns*.softlayer.com"
+    ],
+    "name": "SoftLayer",
+    "_id": "softlayer"
+  },
+  {
+    "addresses": [
+      "ns*.mandic.com.br"
+    ],
+    "name": "Mandic",
+    "_id": "mandic"
+  },
+  {
+    "addresses": [
+      "ns*.mediatemple.net"
+    ],
+    "name": "Media Temple",
+    "_id": "mediatemple"
   }
 ]
