@@ -3,7 +3,7 @@ const assert = require('assert');
 const should  = require('should');
 const mockery = require('mockery');
 
-describe('ipv4Matches(hostname, targetAddresses)', function () {
+describe('resolveNsDiff(hostname, targetAddresses)', function () {
 
   beforeEach(function () {
     mockery.enable({
@@ -13,12 +13,11 @@ describe('ipv4Matches(hostname, targetAddresses)', function () {
     });
 
     var dnsMock = {
-      resolve4: function (hostname, cb) {
+      resolveNs: function (hostname, cb) {
         cb(null, [
-          '0.0.0.0',
-          '1.1.1.1',
-          '2.2.2.2',
-          '3.3.3.3'
+          'ns1.test.habemus.xyz',
+          'ns2.test.HABEMUS.xyz',
+          'ns3.test.habemus.xyz',
         ]);
       },
     };
@@ -34,11 +33,14 @@ describe('ipv4Matches(hostname, targetAddresses)', function () {
     // can replace it
     const hDns = require('../../lib');
 
-    return hDns.ipv4Matches('skirtsfor.men', ['3.3.3.3', '4.4.4.4'])
+    return hDns.resolveNsDiff('skirtsfor.men', [
+        'ns2.test.habemus.xyz',
+        'ns4.test.habemus.xyz',
+      ])
       .then((results) => {
-        results.matches.should.eql(['3.3.3.3']);
-        results.missing.should.eql(['4.4.4.4']);
-        results.extraneous.should.eql(['0.0.0.0', '1.1.1.1', '2.2.2.2'])
+        results.matches.should.eql(['ns2.test.habemus.xyz']);
+        results.missing.should.eql(['ns4.test.habemus.xyz']);
+        results.extraneous.should.eql(['ns1.test.habemus.xyz', 'ns3.test.habemus.xyz'])
       });
   });
 
@@ -47,27 +49,14 @@ describe('ipv4Matches(hostname, targetAddresses)', function () {
     // can replace it
     const hDns = require('../../lib');
 
-    return hDns.ipv4Matches('skirtsfor.men', '3.3.3.3')
+    return hDns.resolveNsDiff('skirtsfor.men', 'ns2.test.habemus.xyz')
       .then((results) => {
-        results.matches.should.eql(['3.3.3.3']);
+        results.matches.should.eql(['ns2.test.habemus.xyz']);
         results.missing.should.eql([]);
-        results.extraneous.should.eql(['0.0.0.0', '1.1.1.1', '2.2.2.2'])
-      });
-  })
-
-  it('should return no matches if no matching addresses are found', function () {
-    const hDns = require('../../lib');
-
-    return hDns.ipv4Matches('skirtsfor.men', ['4.4.4.4'])
-      .then((results) => {
-        results.matches.should.eql([]);
-        results.missing.should.eql(['4.4.4.4'])
         results.extraneous.should.eql([
-          '0.0.0.0',
-          '1.1.1.1',
-          '2.2.2.2',
-          '3.3.3.3'
-        ]);
+          'ns1.test.habemus.xyz',
+          'ns3.test.habemus.xyz',
+        ])
       });
   });
 
@@ -76,10 +65,10 @@ describe('ipv4Matches(hostname, targetAddresses)', function () {
     mockery.deregisterAll();
     const hDns = require('../../lib');
 
-    return hDns.ipv4Matches('domain.that.does.not-exist.habemus.xyz', ['0.0.0.0'])
+    return hDns.resolveNsDiff('domain.that.does.not-exist.habemus.xyz', ['ns1.test.habemus.xyz'])
       .then((results) => {
         results.matches.should.eql([]);
-        results.missing.should.eql(['0.0.0.0']);
+        results.missing.should.eql(['ns1.test.habemus.xyz']);
         results.extraneous.should.eql([]);
       });
   });
@@ -88,7 +77,7 @@ describe('ipv4Matches(hostname, targetAddresses)', function () {
     const hDns = require('../../lib');
 
     assert.throws(function () {
-      hDns.ipv4Matches('domain.com', undefined);
+      hDns.resolveNsDiff('domain.com', undefined);
     });
   });
 });

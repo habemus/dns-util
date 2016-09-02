@@ -3,7 +3,7 @@ const assert = require('assert');
 const should  = require('should');
 const mockery = require('mockery');
 
-describe('txtContains', function () {
+describe('resolveTxtDiff', function () {
 
   beforeEach(function () {
     mockery.enable({
@@ -28,51 +28,45 @@ describe('txtContains', function () {
     mockery.disable();
   });
 
-  it('should return true if the required txt entries are in contained in the txt entries', function () {
+  it('should return missing.length === 0 if all target txt entries are found in the resolved txt records', function () {
     // load the lib inside test so that mockery
     // can replace it
     const hDns = require('../../lib');
 
-    return hDns.txtContains('test.habemus.xyz', [
+    return hDns.resolveTxtDiff('test.habemus.xyz', [
         '5a49aac5f2744d66a3b89bf0f62328ba',
         'another text'
       ])
-      .then((contains) => {
-        contains.should.eql(true);
+      .then((txtDiff) => {
+        txtDiff.matches.length.should.equal(2);
+        txtDiff.missing.length.should.equal(0);
+        txtDiff.extraneous.length.should.equal(1);
       });
   });
 
-  it('should return false if the required txt entries are not in the txt entries of the hostname', function () {
-    const hDns = require('../../lib');
-
-    return hDns.txtContains('test.habemus.xyz', [
-        'not',
-        'another text'
-      ])
-      .then((contains) => {
-        contains.should.eql(false);
-      });
-  });
-
-  it('should return false if an ENOTFOUND error is thrown', function () {
+  it('should return all target txt entries as missing if an ENOTFOUND error is thrown', function () {
     mockery.deregisterAll();
     const hDns = require('../../lib');
 
-    return hDns.txtContains('test.habemus.xyz', [
+    return hDns.resolveTxtDiff('test.habemus.xyz', [
         'not',
         'another text'
       ])
-      .then((contains) => {
-        contains.should.eql(false);
+      .then((txtDiff) => {
+        txtDiff.matches.length.should.equal(0);
+        txtDiff.missing.length.should.equal(2);
+        txtDiff.extraneous.length.should.equal(0);
       });
   });
 
   it('should allow checking against a signle text entry', function () {
     const hDns = require('../../lib');
 
-    return hDns.txtContains('test.habemus.xyz', 'banana')
-      .then((contains) => {
-        contains.should.eql(true);
+    return hDns.resolveTxtDiff('test.habemus.xyz', 'banana')
+      .then((txtDiff) => {
+        txtDiff.matches.length.should.equal(1);
+        txtDiff.missing.length.should.equal(0);
+        txtDiff.extraneous.length.should.equal(2);
       });
   });
 
@@ -80,7 +74,7 @@ describe('txtContains', function () {
     const hDns = require('../../lib');
 
     assert.throws(function () {
-      hDns.txtContains('domain.com', undefined);
+      hDns.resolveTxtDiff('domain.com', undefined);
     });
   });
 });

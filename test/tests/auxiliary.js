@@ -88,46 +88,6 @@ describe('auxiliary', function () {
         return ['five', 'eight', 'ten'].indexOf(item) !== -1;
       })
       .should.eql(true);
-
-      diff.isExactlyEqual.should.eql(false);
-      diff.targetWithinArray.should.eql(false);
-      diff.arrayWithinTarget.should.eql(false);
-    });
-
-    it('should return diff.targetWithinArray true when the target is within the array', function () {
-      
-      var diff = aux.computeArrayDiff(
-        ['one', 'two', 'three', 'four'],
-        ['three', 'one']
-      );
-
-      diff.isExactlyEqual.should.eql(false);
-      diff.targetWithinArray.should.eql(true);
-      diff.arrayWithinTarget.should.eql(false);
-    });
-
-    it('should return diff.arrayWithinTarget true when the array is within the target', function () {
-      
-      var diff = aux.computeArrayDiff(
-        ['three', 'one'],
-        ['one', 'two', 'three', 'four']
-      );
-
-      diff.isExactlyEqual.should.eql(false);
-      diff.targetWithinArray.should.eql(false);
-      diff.arrayWithinTarget.should.eql(true);
-    });
-
-    it('should return diff.isExactlyEqual true when target and source arrays are exactly the same', function () {
-      
-      var diff = aux.computeArrayDiff(
-        ['three', 'one'],
-        ['one', 'three']
-      );
-
-      diff.isExactlyEqual.should.eql(true);
-      diff.targetWithinArray.should.eql(true);
-      diff.arrayWithinTarget.should.eql(true);
     });
 
     it('should accept a compareFn', function () {
@@ -143,10 +103,6 @@ describe('auxiliary', function () {
           })[source] === target;
         }
       );
-
-      diff.isExactlyEqual.should.eql(false);
-      diff.targetWithinArray.should.eql(false);
-      diff.arrayWithinTarget.should.eql(true);
 
       diff.missing.should.eql([4]);
       diff.matches.should.eql(['one', 'two', 'three']);
