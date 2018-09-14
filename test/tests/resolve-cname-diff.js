@@ -57,6 +57,8 @@ describe('resolveCnameDiff', function () {
   });
 
   it('should return missing.length === 1 if an ENOTFOUND error is thrown', function () {
+    this.timeout(10000)
+    
     mockery.deregisterAll();
     const hDns = require('../../lib');
 

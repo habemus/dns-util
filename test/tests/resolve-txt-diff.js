@@ -45,6 +45,8 @@ describe('resolveTxtDiff', function () {
   });
 
   it('should return all target txt entries as missing if an ENOTFOUND error is thrown', function () {
+    this.timeout(10000)
+    
     mockery.deregisterAll();
     const hDns = require('../../lib');
 

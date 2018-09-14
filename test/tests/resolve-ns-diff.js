@@ -61,6 +61,7 @@ describe('resolveNsDiff(hostname, targetAddresses)', function () {
   });
 
   it('should return no matches if an ENOTFOUND error is thrown', function () {
+    this.timeout(10000)
 
     mockery.deregisterAll();
     const hDns = require('../../lib');

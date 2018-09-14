@@ -29,24 +29,24 @@ var domains = [
   'attasi.com',
 ];
 
-Bluebird.all(domains.map((domain) => {
-  return hDns.searchNsProviderData(domain);
-}))
-.then((providersData) => {
+// Bluebird.all(domains.map((domain) => {
+//   return hDns.searchNsProviderData(domain);
+// }))
+// .then((providersData) => {
 
-  var d = domains.reduce((res, domain, index) => {
+//   var d = domains.reduce((res, domain, index) => {
 
-    if (providersData[index]) {
-      res[domain] = providersData[index].name;
-    } else {
-      res[domain] = null;
-    }
+//     if (providersData[index]) {
+//       res[domain] = providersData[index].name;
+//     } else {
+//       res[domain] = null;
+//     }
 
-    return res;
-  }, {});
+//     return res;
+//   }, {});
 
-  console.log(d);
-});
+//   console.log(d);
+// });
 
 // hDns.searchNsProviderData('habemus.xyz').then((data) => {
 //   console.log(data);
@@ -67,3 +67,8 @@ Bluebird.all(domains.map((domain) => {
 // hDns.searchNsProviderData('skirtsfor.men').then((data) => {
 //   console.log(data);
 // });
+
+hDns.resolveTxtDiff('habemus-verify.habemus.xyz', '4a713de9b3a2494d9d5f6a0bce561168')
+  .then((diff) => {
+    console.log(diff);
+  })

@@ -1,6 +1,6 @@
 {
-  "name": "h-dns",
-  "version": "1.0.0-beta",
+  "name": "@habemus/dns-util",
+  "version": "1.0.0",
   "description": "",
   "main": "lib/index.js",
   "scripts": {
